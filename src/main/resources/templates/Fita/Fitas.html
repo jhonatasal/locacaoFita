@@ -1,0 +1,82 @@
+<html layout:decorate="~{/layout.html}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="container-fluid " layout:fragment="corpo">
+		<div class="col-sm-12 text-center">
+			<h1>Fitas</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<a href="#cadastro" data-toggle="collapse"><button
+						class="btn btn-warning m-4">
+						<i class="fa fa-edit"></i> Cadastrar
+					</button></a>
+			</div>
+			<div class="col-md-2">
+				<a href="#lista" data-toggle="collapse"><button
+						class="btn btn-warning m-4">
+						<i class="fa fa-edit"></i> Listar
+					</button></a>
+			</div>
+			<div class="col-md-2">
+				<a href="/"><button class="btn btn-warning m-4">
+						<i class="far fa-arrow-alt-circle-left"></i> Voltar
+					</button></a>
+			</div>
+		</div>
+
+
+		<form action="/fitas/salvar" method="post" class="collapse"
+			id="cadastro">
+			<div class="form-group" th:object="${fita}">
+				<div class="row">
+					<div class="col-md-3">
+						<label>Nome:</label><input type="text" class="form-control"
+							id="nome" name="nome" required autocomplete="off">
+					</div>
+					<div class="col-md-3">
+						<label>Preco:</label> <input type="text" class="form-control preco"
+							id="preco" name="preco" required autocomplete="off">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary" >Salvar</button>
+			</div>
+		</form>
+
+		<div class="row" id="lista">
+			<div class="col-md-12">
+				<table class="table table-condensed table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome da Fita</th>
+							<th>Preco R$:</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="fita : ${fitas}">
+							<td th:text="${fita.id}"></td>
+							<td th:text="${fita.nome}"></td>
+							<td th:text="${fita.preco}" ></td>
+							<td><a
+								th:href="@{/fitas/editar/{id} (id=${fita.id}) }"><button
+										class="btn btn-primary">
+										<i class="fa fa-edit"></i>
+									</button></a> <a
+								th:href="@{/fitas/excluir/{id} (id=${fita.id}) }"><button
+										class="btn btn-danger">
+										<i class="fa fa-trash"></i>
+									</button></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html layout:decorate="~{/layout.html}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="container-fluid " layout:fragment="corpo">
+		<div class="col-sm-12 text-center">
+			<h1>Edição de Fitas</h1>
+		</div>
+		<a href="/fitas/listar"><button class="btn btn-warning"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button></a>
+		<form action="/fitas/editar" th:object="${fita}" method="post" id="edicao">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-3">
+						<label class="cabecalho-label">ID:</label><br> 
+						 <input type="text" class="form-control" id="id"
+							name="id" readonly th:value="${fita.id}" >
+					</div>
+					<div class="col-md-3">
+						<label class="cabecalho-label">Nome:</label> <input type="text" class="form-control"
+							id="nome" name="nome" th:value="${fita.nome}" autocomplete="off">
+					</div>
+					<div class="col-md-3">
+						<label class="cabecalho-label">Preco R$:</label> <input type="text"
+							class="form-control preco" id="id" name="preco" th:value="${fita.preco}" autocomplete="off">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

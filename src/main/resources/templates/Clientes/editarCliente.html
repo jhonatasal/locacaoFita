@@ -1,0 +1,39 @@
+<html layout:decorate="~{/layout.html}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="container-fluid "  layout:fragment="corpo">
+		<div class="col-sm-12 text-center">
+			<h1>Edição de Cliente</h1>
+		</div>
+		<a href="/clientes/listar"><button class="btn btn-warning"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button></a>
+		<form action="/clientes/editar" th:object="${cliente}" method="post" id="edicao">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-3">
+						<label class="cabecalho-label">id:</label><br> 
+						 <input type="text" class="form-control" id="id"
+							name="id" readonly th:value="${cliente.id}" >
+					</div>
+					<div class="col-md-3">
+						<label class="cabecalho-label">Nome:</label> <input type="text" class="form-control"
+							id="nome" name="nome" th:value="${cliente.nome}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label class="cabecalho-label">Data Cadastro:</label> <input type="text"
+							class="form-control" id="id" name="data_cadastro" readonly th:value="${cliente.data_cadastro}">
+					</div>
+					<div class="col-md-3">
+						<label class="cabecalho-label">CPF:</label> <input type="text" class="form-control cpf"
+							id="cpf" name="cpf" th:value="${cliente.cpf}">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

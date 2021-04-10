@@ -1,0 +1,79 @@
+<html layout:decorate="~{/layout.html}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="container-fluid " layout:fragment="corpo" >
+		<div class="col-sm-12 text-center">
+			<h1>Colaboradores</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<a href="#cadastro" data-toggle="collapse"><button
+						class="btn btn-warning m-4">
+						<i class="fa fa-edit"></i> Cadastrar
+					</button></a>
+			</div>
+			<div class="col-md-2">
+				<a href="#lista" data-toggle="collapse"><button
+						class="btn btn-warning m-4">
+						<i class="fa fa-edit"></i> Listar
+					</button></a>
+			</div>
+			<div class="col-md-2">
+				<a href="/"><button class="btn btn-warning m-4">
+						<i class="far fa-arrow-alt-circle-left"></i> Voltar
+					</button></a>
+			</div>
+		</div>
+
+
+		<form action="/colaborador/salvar" method="post" th:object="${colaborador}" class="collapse"
+			id="cadastro">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-3">
+						<label>Nome:</label><input type="text" class="form-control"
+							id="nome" name="nome" autocomplete="off">
+					</div>
+					<div class="col-md-3">
+						<label>CPF:</label> <input type="text" class="form-control cpf"
+							id="cpf" name="cpf" autocomplete="off">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
+		</form>
+
+		<div class="row" id="lista">
+			<div class="col-md-12">
+				<table class="table table-condensed table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>CPF</th>
+							<th>Data cadastro</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="colaborador : ${colaboradores}">
+							<td th:text="${colaborador.id}"></td>
+							<td th:text="${colaborador.nome}"></td>
+							<td th:text="${colaborador.cpf}" class="cpf"></td>
+							<td th:text="${colaborador.data_cadastro} "></td>
+							<td>
+							<a th:href="@{/colaborador/editar/{id} (id=${colaborador.id}) }"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+							<a th:href="@{/colaborador/excluir/{id} (id=${colaborador.id}) }"><button	class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>
