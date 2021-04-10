@@ -1,0 +1,93 @@
+<html layout:decorate="~{/layout.html}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="container-fluid " layout:fragment="corpo">
+		<div class="col-sm-12 text-center">
+			<h1>Fitas</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<a href="#cadastro" data-toggle="collapse"><button
+						class="btn btn-warning m-4">
+						<i class="fa fa-edit"></i> Cadastrar
+					</button></a>
+			</div>
+			<div class="col-md-2">
+				<a href="#lista" data-toggle="collapse"><button
+						class="btn btn-warning m-4">
+						<i class="fa fa-edit"></i> Listar
+					</button></a>
+			</div>
+			<div class="col-md-2">
+				<a href="/"><button class="btn btn-warning m-4">
+						<i class="far fa-arrow-alt-circle-left"></i> Voltar
+					</button></a>
+			</div>
+		</div>
+
+
+		<form th:action="@{/locacao/salvar}" method="post"
+			th:object="${locacao}" class="collapse" id="cadastro">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-3">
+						<label><h4>Para qual cliente é a fita:</h4></label> <select
+							class="form-control form-control-sm" th:field="*{id_cliente}">
+							<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+								th:text="${cliente.nome}" required></option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<label><h4>Qual fita deseja:</h4></label> <select
+							class="form-control form-control-sm" th:field="*{id_fita}">
+							<option th:each="fita : ${fitas}" th:value="${fita.id}"
+								th:text="${fita.nome}" th:name="id_fita" required></option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<label><h4>Qual colaborador:</h4></label> <select
+							class="form-control form-control-sm" th:field="*{id_colaborador}">
+							<option th:each="colaborador : ${colaboradores}"
+								th:value="${colaborador.id}" th:text="${colaborador.nome}"
+								th:name="id_colaborador" required></option>
+						</select>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
+		</form>
+
+		<div class="row" id="lista">
+			<div class="col-md-12">
+				<table class="table table-condensed table-hover">
+					<thead>
+						<tr>
+							<th>ID Locacao:</th>
+							<th>Nome da Fita:</th>
+							<th>Cliente:</th>
+							<th>Colaborador:</th>
+							<th>Preço:</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="locacao : ${locacoes}">
+							<td th:text="${locacao.id}"></td>
+							<td th:text="${locacao.fita}"></td>
+							<td th:text="${locacao.cliente}"></td>
+							<td th:text="${locacao.colaborador}"></td>
+							<td><a
+								th:href="@{/locacao/excluir/{id} (id=${locacao.id}) }"><button
+										class="btn btn-danger">
+										<i class="fa fa-trash"></i>
+									</button></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

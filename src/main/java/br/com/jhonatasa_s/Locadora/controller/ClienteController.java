@@ -16,6 +16,7 @@ import br.com.jhonatasa_s.Locadora.services.ClienteService;
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController implements CrudController<Cliente> {
+	
 	@Autowired
 	private ClienteService clienteService;
 
